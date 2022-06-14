@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  backend:
+    container_name: ps_equal_python
+    build:
+      context: ./ps_equal_python/
+      dockerfile: Dockerfile
+    volumes:
+      - './ps_equal_python/src/:/ps_equal_python/src/'
+    ports:
+      - '5000:5000'
+  frontend:
+    container_name: ps_equal_react
+    build:
+      context: ./ps_equal_react/
+      dockerfile: Dockerfile
+    volumes:
+      - './ps_equal_react/:/ps_equal_react/'
+      - '/ps_equal_react/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
